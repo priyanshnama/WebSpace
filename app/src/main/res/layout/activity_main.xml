@@ -10,12 +10,12 @@
         android:id="@+id/logo"
         android:layout_width="0dp"
         android:layout_height="112dp"
+        android:contentDescription="@string/app_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/right_limit"
         app:layout_constraintStart_toStartOf="@+id/left_limit"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?android:attr/actionModeWebSearchDrawable"
-        android:contentDescription="@string/app_icon" />
+        app:srcCompat="?android:attr/actionModeWebSearchDrawable" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/left_limit"
