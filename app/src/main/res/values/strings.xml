@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">WebSpace</string>
     <string name="app_icon">App Icon</string>
+    <string name="prebuild_msg">This app is under development. please visit again and Thanks for Downloading</string>
 </resources>
