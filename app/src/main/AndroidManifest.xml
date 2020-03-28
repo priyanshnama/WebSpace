@@ -11,6 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity
+            android:name=".HomeActivity"
+            android:label="@string/title_activity_home"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Home" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -19,11 +23,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
-        <!-- Actual AdMob App ID: ca-app-pub-6242171661439587~1091516122 -->
+
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-3940256099942544~3347511713" />
+            android:value="@string/sample_admob_app_id" />
     </application>
 
 </manifest>

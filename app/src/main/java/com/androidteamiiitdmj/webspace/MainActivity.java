@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void open_home(){
-        Intent loginIntent = new Intent(MainActivity.this, Home.class);
+        Intent loginIntent = new Intent(MainActivity.this, HomeActivity.class);
         startActivity(loginIntent);
         //overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
         finish();
