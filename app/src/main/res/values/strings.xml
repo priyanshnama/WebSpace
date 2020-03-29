@@ -37,4 +37,6 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="account_header">Account</string>
+    <string name="title_nav_header_home">Navigation Fragment</string>
+    <string name="nav_label">Navigation</string>
 </resources>

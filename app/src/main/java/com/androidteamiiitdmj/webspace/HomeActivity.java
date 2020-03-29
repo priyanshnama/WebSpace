@@ -2,24 +2,29 @@ package com.androidteamiiitdmj.webspace;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Menu;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -51,6 +56,7 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
         load_ad();
     }
 
@@ -72,6 +78,7 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
+        update_profile();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
@@ -81,6 +88,27 @@ public class HomeActivity extends AppCompatActivity {
         Intent loginIntent = new Intent(HomeActivity.this, SettingsActivity.class);
         startActivity(loginIntent);
         finish();
+    }
+
+    public void update_profile() {
+
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        TextView txt_profile_name = findViewById(R.id.profile_name);
+        String profile_name = mAuth.getCurrentUser().getDisplayName().toString();
+        Log.d("TAG","profile name is "+profile_name);
+        txt_profile_name.setText(profile_name);
+
+
+        String profile_email = mAuth.getCurrentUser().getEmail();
+        String profile_image = Objects.requireNonNull(mAuth.getCurrentUser().getPhotoUrl()).toString();
+        ImageView imgProfilePic = findViewById(R.id.profile_image);
+        TextView txt_profile_email = findViewById(R.id.profile_email);
+        txt_profile_email.setText(profile_email);
+        Glide.with(getApplicationContext()).load(profile_image)
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imgProfilePic);
     }
 
 }
