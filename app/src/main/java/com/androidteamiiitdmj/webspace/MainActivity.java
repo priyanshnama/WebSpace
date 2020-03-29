@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FirebaseAnalytics.getInstance(this);
-        Objects.requireNonNull(this.getSupportActionBar()).hide();
+        //Objects.requireNonNull(this.getSupportActionBar()).hide();
 
         new Handler().postDelayed(() -> {
             mAuth = FirebaseAuth.getInstance();

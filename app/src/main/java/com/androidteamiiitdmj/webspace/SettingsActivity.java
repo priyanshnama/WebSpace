@@ -1,7 +1,6 @@
 package com.androidteamiiitdmj.webspace;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -10,7 +9,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
-
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -21,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.Objects;
 
 public class SettingsActivity extends AppCompatActivity {
-    Button btn_logout;
+    Button btn_logout,btn_back;
     GoogleSignInClient mGoogleSignInClient;
 
     @Override
@@ -54,9 +52,9 @@ public class SettingsActivity extends AppCompatActivity {
     private void update_profile() {
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         TextView txt_profile_name = findViewById(R.id.profile_name);
-        String profile_name = mAuth.getCurrentUser().getDisplayName().toString();
-        Log.d("TAG","profile name is "+profile_name);
-        txt_profile_name.setText(profile_name);
+        //String profile_name = mAuth.getCurrentUser().getDisplayName().toString();
+        //Log.d("TAG","profile name is "+profile_name);
+        //txt_profile_name.setText(profile_name);
 
 
         String profile_email = mAuth.getCurrentUser().getEmail();
@@ -84,5 +82,17 @@ public class SettingsActivity extends AppCompatActivity {
                 task -> Toast.makeText(this,"Signed out",Toast.LENGTH_LONG)
                         .show());
         btn_logout.setVisibility(View.INVISIBLE);
+    }
+
+    @Override
+    public void onBackPressed() {
+        int state = btn_logout.getVisibility();
+        if(state==4) {
+            finishAffinity();
+            System.exit(0);
+        }
+        else {
+            super.onBackPressed();
+        }
     }
 }

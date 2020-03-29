@@ -40,4 +40,5 @@
     <string name="title_nav_header_home">Navigation Fragment</string>
     <string name="nav_label">Navigation</string>
     <string name="profile_photo">profile_photo</string>
+    <string name="action_report">Report a bug</string>
 </resources>

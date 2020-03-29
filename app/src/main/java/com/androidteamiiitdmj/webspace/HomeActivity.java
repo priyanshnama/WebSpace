@@ -27,13 +27,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
-
+    FirebaseAuth mAuth;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getCurrentUser()==null) System.exit(0);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         View  btn_settings = findViewById(R.id.action_settings);
@@ -86,17 +88,14 @@ public class HomeActivity extends AppCompatActivity {
 
     public void open_settings(MenuItem item) {
         Intent loginIntent = new Intent(HomeActivity.this, SettingsActivity.class);
-        startActivity(loginIntent);
-        finish();
+        this.startActivity(loginIntent);
     }
 
     public void update_profile() {
-
-        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         TextView txt_profile_name = findViewById(R.id.profile_name);
-        String profile_name = mAuth.getCurrentUser().getDisplayName().toString();
-        Log.d("TAG","profile name is "+profile_name);
-        txt_profile_name.setText(profile_name);
+        //String profile_name = mAuth.getCurrentUser().getDisplayName().toString();
+        //Log.d("TAG","profile name is "+profile_name);
+        //txt_profile_name.setText(profile_name);
 
 
         String profile_email = mAuth.getCurrentUser().getEmail();
@@ -111,4 +110,8 @@ public class HomeActivity extends AppCompatActivity {
                 .into(imgProfilePic);
     }
 
+    public void open_Report(MenuItem item) {
+        Intent loginIntent = new Intent(HomeActivity.this, ReportActivity.class);
+        this.startActivity(loginIntent);
+    }
 }
