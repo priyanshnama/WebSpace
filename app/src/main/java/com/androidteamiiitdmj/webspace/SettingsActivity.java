@@ -1,16 +1,24 @@
 package com.androidteamiiitdmj.webspace;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 public class SettingsActivity extends AppCompatActivity {
     Button btn_logout;
@@ -40,6 +48,27 @@ public class SettingsActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+        update_profile();
+    }
+
+    private void update_profile() {
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        TextView txt_profile_name = findViewById(R.id.profile_name);
+        String profile_name = mAuth.getCurrentUser().getDisplayName().toString();
+        Log.d("TAG","profile name is "+profile_name);
+        txt_profile_name.setText(profile_name);
+
+
+        String profile_email = mAuth.getCurrentUser().getEmail();
+        String profile_image = Objects.requireNonNull(mAuth.getCurrentUser().getPhotoUrl()).toString();
+        ImageView imgProfilePic = findViewById(R.id.profile_image);
+        TextView txt_profile_email = findViewById(R.id.profile_email);
+        txt_profile_email.setText(profile_email);
+        Glide.with(getApplicationContext()).load(profile_image)
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imgProfilePic);
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
