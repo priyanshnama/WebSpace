@@ -1,16 +1,16 @@
-package com.androidteamiiitdmj.webspace.ui.slideshow;
+package com.androidteamiiitdmj.webspace.ui.internet;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SlideshowViewModel extends ViewModel {
+public class InternetViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public SlideshowViewModel() {
+    public InternetViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        mText.setValue("This is internet fragment");
     }
 
     public LiveData<String> getText() {

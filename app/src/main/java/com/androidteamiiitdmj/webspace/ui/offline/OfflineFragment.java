@@ -1,4 +1,4 @@
-package com.androidteamiiitdmj.webspace.ui.slideshow;
+package com.androidteamiiitdmj.webspace.ui.offline;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.androidteamiiitdmj.webspace.R;
 
-public class SlideshowFragment extends Fragment {
+public class OfflineFragment extends Fragment {
 
-    private SlideshowViewModel slideshowViewModel;
+    private OfflineViewModel offlineViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        slideshowViewModel =
-                ViewModelProviders.of(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        offlineViewModel =
+                ViewModelProviders.of(this).get(OfflineViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_offline, container, false);
+        final TextView textView = root.findViewById(R.id.text_offline);
+        offlineViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

@@ -1,4 +1,4 @@
-package com.androidteamiiitdmj.webspace.ui.gallery;
+package com.androidteamiiitdmj.webspace.ui.intranet;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.androidteamiiitdmj.webspace.R;
 
-public class GalleryFragment extends Fragment {
+public class IntranetFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
+    private IntranetViewModel intranetViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-        final TextView textView = root.findViewById(R.id.text_gallery);
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        intranetViewModel =
+                ViewModelProviders.of(this).get(IntranetViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_intranet, container, false);
+        final TextView textView = root.findViewById(R.id.text_intranet);
+        intranetViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);
