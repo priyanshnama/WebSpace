@@ -6,6 +6,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
@@ -19,7 +21,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.util.Objects;
 
 public class SettingsActivity extends AppCompatActivity {
-    Button btn_logout,btn_back;
+    Button btn_logout;
     GoogleSignInClient mGoogleSignInClient;
 
     @Override
@@ -45,6 +47,8 @@ public class SettingsActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setActionBar(toolbar);
         }
         update_profile();
     }
@@ -57,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity {
         //txt_profile_name.setText(profile_name);
 
 
-        String profile_email = mAuth.getCurrentUser().getEmail();
+        String profile_email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
         String profile_image = Objects.requireNonNull(mAuth.getCurrentUser().getPhotoUrl()).toString();
         ImageView imgProfilePic = findViewById(R.id.profile_image);
         TextView txt_profile_email = findViewById(R.id.profile_email);
