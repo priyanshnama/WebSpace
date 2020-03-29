@@ -123,4 +123,14 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
         progressBar.setVisibility(View.INVISIBLE);
     }
+
+    // to display banner ad
+    {
+        //AdView mAdView;
+        //MobileAds.initialize(this, initializationStatus -> {
+        //});
+        //mAdView = findViewById(R.id.adView);
+        //AdRequest adRequest = new AdRequest.Builder().build();
+        //mAdView.loadAd(adRequest);
+    }
 }
