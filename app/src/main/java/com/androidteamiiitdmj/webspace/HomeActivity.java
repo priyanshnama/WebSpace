@@ -23,19 +23,21 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 
 import java.util.Objects;
 
 public class HomeActivity extends AppCompatActivity {
-    FirebaseAuth mAuth;
+    private FirebaseUser user;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        mAuth = FirebaseAuth.getInstance();
-        if(mAuth.getCurrentUser()==null) System.exit(0);
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user == null) closeapp();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         View  btn_settings = findViewById(R.id.action_settings);
@@ -62,6 +64,11 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         load_ad();
+    }
+
+    private void closeapp() {
+        finishAffinity();
+        System.exit(0);
     }
 
     private void load_ad() {
@@ -95,13 +102,19 @@ public class HomeActivity extends AppCompatActivity {
 
     public void update_profile() {
         TextView txt_profile_name = findViewById(R.id.profile_name);
-        //String profile_name = mAuth.getCurrentUser().getDisplayName().toString();
-        //Log.d("TAG","profile name is "+profile_name);
-        //txt_profile_name.setText(profile_name);
+        String profile_name = user.getDisplayName().toString();
+        for (UserInfo userInfo : user.getProviderData()) {
+            if (profile_name == null && userInfo.getDisplayName() != null) {
+                profile_name = userInfo.getDisplayName();
+            }
+        }
+        txt_profile_name.setText(profile_name);
+        Log.d("TAG","profile name from firebase is " + user.getDisplayName().toString());
+        Log.d("TAG","profile name from app is "+ txt_profile_name.getText());
 
 
-        String profile_email = mAuth.getCurrentUser().getEmail();
-        String profile_image = Objects.requireNonNull(mAuth.getCurrentUser().getPhotoUrl()).toString();
+        String profile_email = user.getEmail();
+        String profile_image = Objects.requireNonNull(user.getPhotoUrl()).toString();
         ImageView imgProfilePic = findViewById(R.id.profile_image);
         TextView txt_profile_email = findViewById(R.id.profile_email);
         txt_profile_email.setText(profile_email);

@@ -2,12 +2,13 @@ package com.androidteamiiitdmj.webspace;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -18,6 +19,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+
 import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -28,26 +30,25 @@ public class MainActivity extends AppCompatActivity {
     static final int GOOGLE_SIGN_IN=123;
     int SPLASH_TIME_OUT = 100;
     private FirebaseAuth mAuth;
-    ProgressBar progressBar;
-    GoogleSignInClient mGoogleSignInClient;
-    GoogleSignInAccount account;
+    private ProgressBar progressBar;
+    private GoogleSignInClient mGoogleSignInClient;
+    private GoogleSignInAccount account;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseAnalytics.getInstance(this);
-        //Objects.requireNonNull(this.getSupportActionBar()).hide();
 
-        new Handler().postDelayed(() -> {
-            mAuth = FirebaseAuth.getInstance();
-            if(mAuth.getCurrentUser() == null ) SignInGoogle();
-            else open_home();
-        },SPLASH_TIME_OUT);
+        FirebaseAnalytics.getInstance(this);
+        mAuth = FirebaseAuth.getInstance();
+        Objects.requireNonNull(this.getSupportActionBar()).hide();
+
+        if(mAuth.getCurrentUser() == null ) SignInGoogle();
+        else open_home();
     }
 
-    void SignInGoogle(){
-        progressBar = findViewById(R.id.progress_circular);
+    private  void SignInGoogle(){
         account = null;
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
                 .Builder()
@@ -56,7 +57,6 @@ public class MainActivity extends AppCompatActivity {
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
         Log.d("TAG","Google Signin Started");
-        progressBar.setVisibility(View.VISIBLE);
         Intent signIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signIntent,GOOGLE_SIGN_IN);
     }
@@ -125,12 +125,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // to display banner ad
-    {
+    //{
         //AdView mAdView;
         //MobileAds.initialize(this, initializationStatus -> {
         //});
         //mAdView = findViewById(R.id.adView);
         //AdRequest adRequest = new AdRequest.Builder().build();
         //mAdView.loadAd(adRequest);
-    }
+    //}
 }

@@ -3,6 +3,7 @@
     package="com.androidteamiiitdmj.webspace">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -14,10 +15,12 @@
 
         <activity
             android:name=".ReportActivity"
+            android:parentActivityName=".HomeActivity"
             android:label="@string/action_report"/>
 
         <activity
             android:name=".SettingsActivity"
+            android:parentActivityName=".HomeActivity"
             android:label="@string/action_settings" />
 
         <activity
