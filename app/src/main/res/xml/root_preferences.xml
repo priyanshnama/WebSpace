@@ -32,6 +32,10 @@
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/account_header"/>
+    <PreferenceCategory app:title="@string/account_header">
+
+
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

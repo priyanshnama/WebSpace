@@ -19,8 +19,6 @@
     <string name="menu_intranet">Intranet</string>
     <string name="menu_offline">Offline</string>
 
-
-
     <string name="home_second">Home Second</string>
     <string name="title_activity_settings">Settings</string>
 
@@ -43,5 +41,4 @@
     <string name="nav_label">Navigation</string>
     <string name="profile_photo">profile_photo</string>
     <string name="action_report">Report a bug</string>
-    <string name="this_app_version">3.30</string>
 </resources>

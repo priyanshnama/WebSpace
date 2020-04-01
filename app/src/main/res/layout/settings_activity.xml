@@ -5,21 +5,21 @@
     android:layout_height="match_parent"
     tools:context=".SettingsActivity">
 
-    <!--<FrameLayout
+    <FrameLayout
         android:id="@+id/settings"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/logout"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
         android:text="@string/logout"
+        android:textColor="@color/colorPrimaryDark"
         app:layout_constraintStart_toStartOf="@+id/profile_name"
         app:layout_constraintTop_toBottomOf="@+id/profile_email" />
 
@@ -30,20 +30,23 @@
         android:contentDescription="@string/profile_photo"
         app:layout_constraintBottom_toBottomOf="@+id/logout"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/account_display" />
+        app:layout_constraintTop_toTopOf="@+id/profile_name" />
 
     <TextView
         android:id="@+id/profile_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:text=""
         app:layout_constraintStart_toEndOf="@+id/profile_image"
-        app:layout_constraintTop_toBottomOf="@+id/account_display" />
+        app:layout_constraintTop_toBottomOf="@+id/account" />
 
     <TextView
         android:id="@+id/profile_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text=""
         app:layout_constraintStart_toStartOf="@+id/profile_name"
         app:layout_constraintTop_toBottomOf="@+id/profile_name" />
 
@@ -77,42 +80,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/faded_logo" />
 
-    <Button
-        android:id="@+id/updateButton"
-        style="@style/Widget.AppCompat.Button.Colored"
+    <TextView
+        android:id="@+id/current_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Update"
-        android:textColor="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toTopOf="@+id/display_version"
-        app:layout_constraintEnd_toEndOf="@+id/app_version"
-        app:layout_constraintStart_toStartOf="@+id/display_version" />
+        android:text="Current Version"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/faded_logo" />
 
     <TextView
         android:id="@+id/app_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/this_app_version"
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintStart_toEndOf="@+id/display_version" />
+        android:text="20.03.31"
+        app:layout_constraintBottom_toBottomOf="@+id/current_version"
+        app:layout_constraintStart_toEndOf="@+id/current_version" />
 
-    <TextView
-        android:id="@+id/display_version"
+    <Button
+        android:id="@+id/updateButton"
+        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Current Version - "
-        app:layout_constraintBottom_toTopOf="@+id/textView"
-        app:layout_constraintStart_toStartOf="@+id/faded_logo" />
+        android:text="UPDATE"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@+id/current_version"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/account_display"
+        android:id="@+id/account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Account"
+        android:layout_marginTop="20dp"
+        android:text="@string/account_header"
         android:textColor="@color/colorPrimary"
-        android:textSize="30sp"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
