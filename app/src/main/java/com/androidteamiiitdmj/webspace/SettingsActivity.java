@@ -152,7 +152,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void download_update() {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-
             if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
                 String[] permissions = {Manifest.permission.WRITE_EXTERNAL_STORAGE};
                 requestPermissions(permissions,PERMISSION_STORAGE_CODE);
@@ -230,18 +229,16 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void downloading(){
-        String uril = "https://bit.ly/wespaceapp";
-        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(uril));
-        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI |
-                DownloadManager.Request.NETWORK_MOBILE);
+        String uri = "https://bit.ly/wespaceapp";
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(uri));
+        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE);
+        request.setAllowedOverRoaming(false);
+        request.setTitle("Webspace.apk");
         request.setDescription("Downloading update");
-        request.setTitle("WebSpace.apk");
-
+        request.setVisibleInDownloadsUi(true);
         request.allowScanningByMediaScanner();
         request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
         request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "WebSpace.apk");
-
-        // get download service and enqueue file
         DownloadManager manager = (DownloadManager) getSystemService(Context.DOWNLOAD_SERVICE);
         manager.enqueue(request);
     }

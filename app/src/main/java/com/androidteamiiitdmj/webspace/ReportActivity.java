@@ -16,6 +16,8 @@ public class ReportActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+
     }
 
     @Override
