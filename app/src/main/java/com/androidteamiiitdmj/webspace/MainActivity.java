@@ -1,7 +1,5 @@
 package com.androidteamiiitdmj.webspace;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         progressBar = findViewById(R.id.progress_circular);
-        if(mAuth.getCurrentUser()==null)GooglesignIn();
+        if (mAuth.getCurrentUser() == null) GooglesignIn();
         else open_home();
     }
 
