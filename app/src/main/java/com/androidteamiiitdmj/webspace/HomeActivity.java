@@ -2,7 +2,6 @@ package com.androidteamiiitdmj.webspace;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,14 +39,8 @@ public class HomeActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         View  btn_settings = findViewById(R.id.action_settings);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        FloatingActionButton fab = findViewById(R.id.search);
+        fab.setOnClickListener(this::search);
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -62,6 +55,11 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         load_ad();
+    }
+
+    private void search(View view) {
+        Snackbar.make(view, "Coming Soon", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show();
     }
 
     private void close_app() {
@@ -121,4 +119,6 @@ public class HomeActivity extends AppCompatActivity {
         Intent loginIntent = new Intent(HomeActivity.this, ReportActivity.class);
         this.startActivity(loginIntent);
     }
+
+
 }

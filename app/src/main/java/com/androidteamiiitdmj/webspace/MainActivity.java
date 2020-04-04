@@ -29,9 +29,6 @@ import java.util.regex.Pattern;
 public class MainActivity extends AppCompatActivity {
     static final int GOOGLE_SIGN_IN = 123;
     private FirebaseAuth mAuth;
-    private Button btn_login, btn_logout;
-    private TextView text;
-    private ImageView image;
     private GoogleSignInOptions gso;
     private GoogleSignInAccount account;
     private ProgressBar progressBar;
@@ -44,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         getSupportActionBar().hide();
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
