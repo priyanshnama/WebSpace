@@ -41,4 +41,7 @@
     <string name="nav_label">Navigation</string>
     <string name="profile_photo">profile_photo</string>
     <string name="action_report">Report a bug</string>
+
+    <string name="report_title_not_valid">Title can not be empty</string>
+    <string name="report_description_not_valid">Description can not empty</string>
 </resources>
