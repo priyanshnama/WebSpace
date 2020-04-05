@@ -92,7 +92,7 @@
         android:id="@+id/app_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="20.03.31"
+        android:text="20.04.04"
         app:layout_constraintBottom_toBottomOf="@+id/current_version"
         app:layout_constraintStart_toEndOf="@+id/current_version" />
 
@@ -103,6 +103,7 @@
         android:layout_height="wrap_content"
         android:text="UPDATE"
         android:textColor="@color/colorPrimaryDark"
+        android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/current_version"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

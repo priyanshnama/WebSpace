@@ -59,8 +59,8 @@ public class SettingsActivity extends AppCompatActivity {
 
         updateButton = findViewById(R.id.updateButton);
         btn_logout = findViewById(R.id.logout);
-        updateButton.setOnClickListener(v -> get_latest_version());
-        btn_logout.setOnClickListener(v -> logout());
+        updateButton.setOnClickListener(this::get_latest_version);
+        btn_logout.setOnClickListener(this::logout);
 
         get_this_version();
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -95,7 +95,7 @@ public class SettingsActivity extends AppCompatActivity {
                 .into(imgProfilePic);
     }
 
-    private void logout() {
+    private void logout(View v) {
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
                 .Builder()
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -121,7 +121,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    private void get_latest_version() {
+    private void get_latest_version(View v) {
         progressDialog = new ProgressDialog(SettingsActivity.this);
         progressDialog.setTitle("Checking for updates");
         progressDialog.show();

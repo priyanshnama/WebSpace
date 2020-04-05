@@ -26,16 +26,6 @@
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/report_title" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Attach a file (optional)"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
-
     <EditText
         android:id="@+id/report_title"
         android:layout_width="wrap_content"
@@ -57,34 +47,13 @@
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-    <Button
-        android:id="@+id/select_image"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_marginTop="20dp"
-        android:text="Select Image"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-    <TextView
-        android:id="@+id/file_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/select_image"
-        app:layout_constraintStart_toEndOf="@+id/select_image"
-        app:layout_constraintTop_toTopOf="@+id/select_image"
-        app:layout_constraintVertical_bias="0.562" />
-
     <RadioGroup
         android:id="@+id/radioGroup2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/submit"
-        app:layout_constraintStart_toStartOf="@+id/guideline2">
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/status">
 
         <RadioButton
             android:id="@+id/radio_report"
@@ -95,8 +64,8 @@
         <RadioButton
             android:id="@+id/radio_suggesstion"
             android:layout_width="wrap_content"
-            android:checked="true"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="Send as Suggesstion" />
     </RadioGroup>
 
@@ -105,11 +74,11 @@
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="20dp"
         android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline2" />
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintStart_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -118,22 +87,13 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.15" />
 
-    <ImageView
-        android:id="@+id/file_image"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/description"
-        app:layout_constraintTop_toBottomOf="@+id/file_name"
-        app:layout_constraintVertical_bias="0.537" />
-
     <TextView
         android:id="@+id/status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/auth_method_button_drawablePadding"
         android:textColor="@color/red"
-        app:layout_constraintBottom_toTopOf="@+id/radioGroup2"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/select_image" />
+        app:layout_constraintTop_toBottomOf="@+id/description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
