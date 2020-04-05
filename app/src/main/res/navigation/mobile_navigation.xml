@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@+id/nav_internet">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/nav_internet"
         android:name="com.androidteamiiitdmj.webspace.ui.internet.InternetFragment"
         android:label="@string/menu_internet"
         tools:layout="@layout/fragment_internet">
@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_home_second">
         <action
             android:id="@+id/action_HomeSecondFragment_to_HomeFragment"
-            app:destination="@id/nav_home" />
+            app:destination="@id/nav_internet" />
 
         <argument
             android:name="myArg"
@@ -30,13 +30,13 @@
     </fragment>
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_intranet"
         android:name="com.androidteamiiitdmj.webspace.ui.intranet.IntranetFragment"
         android:label="@string/menu_intranet"
-        tools:layout="@layout/fragment_intranetxml" />
+        tools:layout="@layout/fragment_intranet" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_offline"
         android:name="com.androidteamiiitdmj.webspace.ui.offline.OfflineFragment"
         android:label="@string/menu_offline"
         tools:layout="@layout/fragment_offline" />

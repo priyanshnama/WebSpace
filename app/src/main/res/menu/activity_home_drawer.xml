@@ -7,15 +7,15 @@
     <group android:checkableBehavior="single"
         >
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_internet"
             android:icon="@drawable/internet"
             android:title="@string/menu_internet" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_intranet"
             android:icon="@drawable/intranet"
             android:title="@string/menu_intranet" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/nav_offline"
             android:icon="@drawable/offline"
             android:title="@string/menu_offline" />
     </group>

@@ -2,6 +2,8 @@ package com.androidteamiiitdmj.webspace;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Layout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,8 +27,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
+import static com.androidteamiiitdmj.webspace.R.id.nav_offline;
+
 public class HomeActivity extends AppCompatActivity {
-    FirebaseAuth mAuth;
+    private FirebaseAuth mAuth;
     private AppBarConfiguration mAppBarConfiguration;
 
     @Override
@@ -46,13 +50,16 @@ public class HomeActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_internet, R.id.nav_intranet, R.id.nav_offline)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        load_ad();
+    }
+
+    private void something(View v) {
+        Log.d("TAG","its working");
     }
 
     private void search(View view) {
@@ -90,8 +97,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void open_settings(MenuItem item) {
-        Intent loginIntent = new Intent(HomeActivity.this, SettingsActivity.class);
-        this.startActivity(loginIntent);
+        Intent settingsIntent = new Intent(HomeActivity.this, SettingsActivity.class);
+        this.startActivity(settingsIntent);
     }
 
     public void update_profile() {
@@ -108,8 +115,8 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void open_Report(MenuItem item) {
-        Intent loginIntent = new Intent(HomeActivity.this, ReportActivity.class);
-        this.startActivity(loginIntent);
+        Intent reportIntent = new Intent(HomeActivity.this, ReportActivity.class);
+        this.startActivity(reportIntent);
     }
 
 

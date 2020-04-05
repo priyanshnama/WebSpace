@@ -8,7 +8,7 @@ public class InternetViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public InternetViewModel() {
+    public InternetViewModel(){
         mText = new MutableLiveData<>();
         mText.setValue("This is internet fragment");
     }
