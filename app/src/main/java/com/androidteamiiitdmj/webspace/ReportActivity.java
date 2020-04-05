@@ -1,9 +1,5 @@
 package com.androidteamiiitdmj.webspace;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,31 +7,21 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.snackbar.Snackbar;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.io.File;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ReportActivity extends AppCompatActivity {
-
-    private Button btn_submit;
     private EditText txt_title,txt_description;
     private TextView txt_status;
-    private RadioButton radio_report,radio_suggesstion;
+    private RadioButton radio_report,radio_suggestion;
     private String title, description, TAG, name, email;
     private FirebaseUser user;
     private FirebaseFirestore firebaseFirestore;
@@ -46,23 +32,19 @@ public class ReportActivity extends AppCompatActivity {
         setContentView(R.layout.activity_report);
         user = FirebaseAuth.getInstance().getCurrentUser();
         firebaseFirestore = FirebaseFirestore.getInstance();
-
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
         txt_title = findViewById(R.id.report_title);
         txt_description = findViewById(R.id.description);
         txt_status = findViewById(R.id.status);
         radio_report = findViewById(R.id.radio_report);
-        radio_suggesstion = findViewById(R.id.radio_suggesstion);
-        btn_submit = findViewById(R.id.submit);
-
+        radio_suggestion = findViewById(R.id.radio_suggesstion);
+        Button btn_submit = findViewById(R.id.submit);
         txt_title.setOnFocusChangeListener(this::validation);
         txt_description.setOnFocusChangeListener(this::validation);
         btn_submit.setOnClickListener(this::submit);
-
     }
 
     private void submit(View v) {
@@ -72,7 +54,7 @@ public class ReportActivity extends AppCompatActivity {
         else if(description.equals(""))showSoftKeyboard(txt_description);
         else{
             if (radio_report.isChecked()) TAG = "Reports";
-            else if (radio_suggesstion.isChecked()) TAG = "Suggestion";
+            else if (radio_suggestion.isChecked()) TAG = "Suggestion";
             email = user.getEmail();
             name = user.getDisplayName();
             send_submission();
@@ -85,9 +67,6 @@ public class ReportActivity extends AppCompatActivity {
         data.put("name", name);
         data.put("Title", title);
         data.put("Description",description);
-
-        // Add a new document with a generated ID
-        Date currentTime = Calendar.getInstance().getTime();
         firebaseFirestore.collection(TAG)
                 .add(data)
                 .addOnSuccessListener(documentReference -> {
@@ -105,9 +84,9 @@ public class ReportActivity extends AppCompatActivity {
                 txt_status.setText(R.string.report_description_not_valid);
         }
         if(hasFocus){
-            if((txt_status.getText().toString().equals(R.string.report_title_not_valid)) && v.getId()==R.id.report_title)
+            if((txt_status.getText().toString().equals("Title can not be empty")) && v.getId()==R.id.report_title)
                 txt_status.setText("");
-            else if((txt_status.getText().toString().equals(R.string.report_description_not_valid)) && v.getId()==R.id.description)
+            else if((txt_status.getText().toString().equals("Description can not empty")) && v.getId()==R.id.description)
                 txt_status.setText("");
         }
     }
@@ -120,9 +99,10 @@ public class ReportActivity extends AppCompatActivity {
     public void showSoftKeyboard(View view) {
         view.requestFocus();
         if (view.requestFocus()) {
-            InputMethodManager imm = (InputMethodManager)
+            InputMethodManager inputMethodManager = (InputMethodManager)
                     getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+            assert inputMethodManager != null;
+            inputMethodManager.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
         }
     }
 }

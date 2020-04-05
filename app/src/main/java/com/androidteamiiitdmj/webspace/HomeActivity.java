@@ -37,11 +37,10 @@ public class HomeActivity extends AppCompatActivity {
         if(mAuth.getCurrentUser()==null) close_app();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        View  btn_settings = findViewById(R.id.action_settings);
-
+        //View  btn_settings = findViewById
+        // (R.id.action_settings);
         FloatingActionButton fab = findViewById(R.id.search);
         fab.setOnClickListener(this::search);
-
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -53,7 +52,6 @@ public class HomeActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
         load_ad();
     }
 
@@ -97,13 +95,7 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void update_profile() {
-        TextView txt_profile_name = findViewById(R.id.profile_name);
-        //String profile_name = mAuth.getCurrentUser().getDisplayName().toString();
-        //Log.d("TAG","profile name is "+profile_name);
-        //txt_profile_name.setText(profile_name);
-
-
-        String profile_email = mAuth.getCurrentUser().getEmail();
+        String profile_email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
         String profile_image = Objects.requireNonNull(mAuth.getCurrentUser().getPhotoUrl()).toString();
         ImageView imgProfilePic = findViewById(R.id.profile_image);
         TextView txt_profile_email = findViewById(R.id.profile_email);
