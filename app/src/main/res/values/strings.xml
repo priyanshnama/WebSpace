@@ -44,4 +44,8 @@
 
     <string name="report_title_not_valid">Title can not be empty</string>
     <string name="report_description_not_valid">Description can not empty</string>
+    <string name="msg_token_fmt"></string>
+
+    <string name="fcm_token">Emulator Android_9.0 Android 9, API 28</string>
+
 </resources>
