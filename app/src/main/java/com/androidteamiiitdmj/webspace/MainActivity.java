@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -29,11 +30,13 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private ProgressBar progressBar;
     private GoogleSignInClient mGoogleSignInClient;
+    private ImageView logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mAuth = FirebaseAuth.getInstance();
         Objects.requireNonNull(getSupportActionBar()).hide();
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -91,7 +94,9 @@ public class MainActivity extends AppCompatActivity {
                     GoogleSignIn();
                 }
             } catch (ApiException e) {
-                Log.w("TAG", "Google sign in failed", e);
+                Log.w("TAG", "SignInResult::Failed code="
+                        + e.getStatusCode() + ", Message: "
+                        + e.getMessage());
             }
         }
     }

@@ -1,26 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_home" />
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+    <android.gesture.GestureOverlayView
+        android:id="@+id/top_bar"
+        android:layout_width="0dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/include"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="28dp">
 
-    </com.google.android.material.appbar.AppBarLayout>
+            <ImageView
+                android:id="@+id/navigate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_navigation_bars" />
 
-    <include layout="@layout/content_home" />
+            <EditText
+                android:id="@+id/search_bar"
+                style="@android:style/Widget.DeviceDefault.EditText"
+                android:layout_width="267dp"
+                android:layout_height="51dp"
+                android:background="@android:color/transparent"
+                android:fadingEdge="horizontal|vertical"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/contain_panel"
+                app:layout_constraintStart_toEndOf="@+id/navigate"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/contain_panel"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/search_bar"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/show_panel"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </android.gesture.GestureOverlayView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/search"
@@ -28,6 +74,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="@dimen/fab_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/search" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
