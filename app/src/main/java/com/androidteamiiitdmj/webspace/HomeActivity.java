@@ -7,8 +7,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -23,6 +21,11 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -37,6 +40,7 @@ public class HomeActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private View panel;
     private EditText search;
+    private AdView panel_ad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +87,7 @@ public class HomeActivity extends AppCompatActivity {
         //there are a lot of settings, for panel, check them all out!
         panel.findViewById(R.id.btn_settings).setOnClickListener(this::open_settings);
         panel.findViewById(R.id.report).setOnClickListener(this::open_Report);
-        panel.findViewById(R.id.btn_logout).setOnClickListener(this::logout);
+        panel.findViewById(R.id.google).setOnClickListener(this::logout);
         String profile_email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
         TextView txt_profile_email = panel.findViewById(R.id.profile_email);
         txt_profile_email.setText(profile_email);
@@ -97,6 +101,15 @@ public class HomeActivity extends AppCompatActivity {
 
         //now that the panel is set up, it's time to show it
         panel.show();
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        panel_ad = panel.findViewById(R.id.panel_ad);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        panel_ad.loadAd(adRequest);
     }
 
     private void navigation(View view) {

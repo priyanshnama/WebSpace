@@ -58,4 +58,5 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics:17.0.0-beta03'
     implementation 'com.google.firebase:firebase-messaging:20.1.5'
     implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'com.google.android.gms:play-services-ads:19.0.1'
 }
