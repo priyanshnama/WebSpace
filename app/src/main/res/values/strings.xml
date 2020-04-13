@@ -47,5 +47,8 @@
     <string name="msg_token_fmt"></string>
 
     <string name="fcm_token">Emulator Android_9.0 Android 9, API 28</string>
+    <string name="current_version">Current Version</string>
+    <string name="_20_04_04">20.04.04</string>
+    <string name="update">UPDATE</string>
 
 </resources>

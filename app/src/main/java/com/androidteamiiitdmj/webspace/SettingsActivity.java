@@ -12,31 +12,23 @@ import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Objects;
 
 public class SettingsActivity extends AppCompatActivity {
-    private Button btn_logout;
     private String  app_version;
     private String latest_version;
     private static final int PERMISSION_STORAGE_CODE = 1000;
     private ProgressDialog progressDialog;
-    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +39,8 @@ public class SettingsActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         Button updateButton = findViewById(R.id.updateButton);
-        btn_logout = findViewById(R.id.logout);
         updateButton.setOnClickListener(this::get_latest_version);
-        btn_logout.setOnClickListener(this::logout);
         get_this_version();
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        if(user!=null) update_profile();
     }
 
     private void get_this_version() {
@@ -60,43 +48,9 @@ public class SettingsActivity extends AppCompatActivity {
         app_version = (String) txt_app_version.getText();
     }
 
-    private void update_profile() {
-        String profile_email = user.getEmail();
-        String profile_image = Objects.requireNonNull(user.getPhotoUrl()).toString();
-        ImageView imgProfilePic = findViewById(R.id.profile_image);
-        TextView txt_profile_email = findViewById(R.id.profile_email);
-        txt_profile_email.setText(profile_email);
-        Glide.with(getApplicationContext()).load(profile_image)
-                .thumbnail(0.5f)
-                .crossFade()
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(imgProfilePic);
-    }
-
-    private void logout(View v) {
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
-                .Builder()
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
-        FirebaseAuth.getInstance().signOut();
-        mGoogleSignInClient.signOut().addOnCompleteListener(this,
-                task -> Toast.makeText(this,"Signed out",Toast.LENGTH_LONG)
-                        .show());
-        btn_logout.setVisibility(View.INVISIBLE);
-    }
-
     @Override
     public void onBackPressed() {
-        int state = btn_logout.getVisibility();
-        if(state==4) {
-            finishAffinity();
-            System.exit(0);
-        }
-        else {
-            super.onBackPressed();
-        }
+        super.onBackPressed();
     }
 
     private void get_latest_version(View v) {

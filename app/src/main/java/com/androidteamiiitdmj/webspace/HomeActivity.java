@@ -4,13 +4,9 @@ import android.app.ActionBar;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -25,11 +21,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -38,9 +29,9 @@ import java.util.Objects;
 public class HomeActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private AppBarConfiguration mAppBarConfiguration;
-    private View panel;
-    private EditText search;
-    private AdView panel_ad;
+
+    public HomeActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +50,8 @@ public class HomeActivity extends AppCompatActivity {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(imgProfilePic);
 
-        FloatingActionButton fab = findViewById(R.id.search);
-        fab.setOnClickListener(this::search);
+        findViewById(R.id.search).setOnClickListener(v->startActivity(new Intent(HomeActivity.this,Search.class)));
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -73,21 +64,18 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
         findViewById(R.id.navigate).setOnClickListener(this::navigation);
         findViewById(R.id.contain_panel).setOnClickListener(this::show_panel);
-
     }
 
     private void show_panel(View view){
         //set up panel
         Dialog panel = new Dialog(HomeActivity.this);
         panel.setContentView(R.layout.activity_panel);
-        panel.setTitle("This is my custom panel box");
         panel.setCancelable(true);
         Objects.requireNonNull(panel.getWindow()).setLayout(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
 
         //there are a lot of settings, for panel, check them all out!
         panel.findViewById(R.id.btn_settings).setOnClickListener(this::open_settings);
         panel.findViewById(R.id.report).setOnClickListener(this::open_Report);
-        panel.findViewById(R.id.google).setOnClickListener(this::logout);
         String profile_email = Objects.requireNonNull(mAuth.getCurrentUser()).getEmail();
         TextView txt_profile_email = panel.findViewById(R.id.profile_email);
         txt_profile_email.setText(profile_email);
@@ -102,15 +90,15 @@ public class HomeActivity extends AppCompatActivity {
         //now that the panel is set up, it's time to show it
         panel.show();
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
-            @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
-            }
-        });
-        panel_ad = panel.findViewById(R.id.panel_ad);
+        MobileAds.initialize(this, this::task);
+        AdView panel_ad = panel.findViewById(R.id.panel_ad);
         AdRequest adRequest = new AdRequest.Builder().build();
         panel_ad.loadAd(adRequest);
     }
+
+    private void task(InitializationStatus initializationStatus) {
+    }
+
 
     private void navigation(View view) {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -119,47 +107,9 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    private void logout(View view) {
-        GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions
-                .Builder()
-                .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail()
-                .build();
-        GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
-        FirebaseAuth.getInstance().signOut();
-        mGoogleSignInClient.signOut().addOnCompleteListener(this,
-                task -> Toast.makeText(this,"Signed out",Toast.LENGTH_LONG)
-                        .show());
-
-    }
-
-    private void something(View v) {
-        Log.d("TAG","its working");
-    }
-
-    private void search(View view) {
-
-    }
-
     private void close_app() {
         finish();
         System.exit(0);
-    }
-
-    private void load_ad() {
-        //AdView mAdView;
-        //MobileAds.initialize(this, initializationStatus -> {
-        //});
-        //mAdView = findViewById(R.id.adView);
-        //AdRequest adRequest = new AdRequest.Builder().build();
-        //mAdView.loadAd(adRequest);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
-        return true;
     }
 
     public void open_settings(View view) {
@@ -171,6 +121,5 @@ public class HomeActivity extends AppCompatActivity {
         Intent reportIntent = new Intent(HomeActivity.this, ReportActivity.class);
         this.startActivity(reportIntent);
     }
-
 
 }
