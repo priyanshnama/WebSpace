@@ -8,7 +8,9 @@
 
     <include
         android:id="@+id/include"
-        layout="@layout/content_home" />
+        layout="@layout/content_home"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <android.gesture.GestureOverlayView
         android:id="@+id/top_bar"
@@ -35,14 +37,12 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_navigation_bars" />
 
-            <EditText
-                android:id="@+id/search_bar"
-                style="@android:style/Widget.DeviceDefault.EditText"
+            <TextView
+                android:id="@+id/title_bar"
+                style="@style/Base.Widget.MaterialComponents.TextView"
+
                 android:layout_width="0dp"
-                android:layout_height="51dp"
-                android:background="@android:color/transparent"
-                android:fadingEdge="horizontal|vertical"
-                android:orientation="horizontal"
+                android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/contain_panel"
                 app:layout_constraintStart_toEndOf="@+id/navigate"
@@ -50,7 +50,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/contain_panel"
-                android:layout_width="64dp"
+                android:layout_width="43dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
