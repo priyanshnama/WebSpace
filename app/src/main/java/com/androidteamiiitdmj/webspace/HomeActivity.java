@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.navigation.NavController;
@@ -52,24 +54,37 @@ public class HomeActivity extends AppCompatActivity {
 
         findViewById(R.id.search).setOnClickListener(v->startActivity(new Intent(HomeActivity.this,Search.class)));
 
+
+
+
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_internet, R.id.nav_intranet, R.id.nav_offline)
+                R.id.nav_internet, R.id.nav_intranet, R.id.nav_offline,R.id.nav_attendance)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+
+
+
+
+
         findViewById(R.id.navigate).setOnClickListener(this::navigation);
         findViewById(R.id.contain_panel).setOnClickListener(this::show_panel);
 
         if( isConnectedToInternet())open_fragment_internet();
+        else open_offline();
+    }
+
+    private void open_offline() {
+        Toast.makeText(this, "Not connected to internet", Toast.LENGTH_LONG).show();
     }
 
     private void open_fragment_internet() {
-
+        Toast.makeText(this, "Connected to internet", Toast.LENGTH_LONG).show();
     }
 
     private boolean isConnectedToInternet() {

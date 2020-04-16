@@ -2,12 +2,13 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/attendance"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.intranet.IntranetFragment">
+    tools:context=".ui.attendance.AttendanceFragment">
 
     <TextView
-        android:id="@+id/text_intranet"
+        android:id="@+id/text_attendance"
         style="@style/Base.Widget.MaterialComponents.TextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

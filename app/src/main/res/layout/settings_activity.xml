@@ -32,7 +32,7 @@
         android:id="@+id/current_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/current_version"
+        android:text="@string/txt_current_version"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/faded_logo" />
 
@@ -40,7 +40,8 @@
         android:id="@+id/app_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/_20_04_04"
+        android:layout_marginStart="8dp"
+        android:text="@string/current_version"
         app:layout_constraintBottom_toBottomOf="@+id/current_version"
         app:layout_constraintStart_toEndOf="@+id/current_version" />
 

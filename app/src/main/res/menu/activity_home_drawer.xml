@@ -18,5 +18,9 @@
             android:id="@+id/nav_offline"
             android:icon="@drawable/offline"
             android:title="@string/menu_offline" />
+        <item
+            android:id="@+id/nav_attendance"
+            android:icon="@drawable/attendance"
+            android:title="@string/attendance" />
     </group>
 </menu>

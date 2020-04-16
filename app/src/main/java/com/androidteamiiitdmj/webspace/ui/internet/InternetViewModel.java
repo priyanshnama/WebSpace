@@ -10,7 +10,7 @@ public class InternetViewModel extends ViewModel {
 
     public InternetViewModel(){
         mText = new MutableLiveData<>();
-        mText.setValue("This is internet fragment");
+        mText.setValue("INTERNET");
     }
 
     public LiveData<String> getText() {

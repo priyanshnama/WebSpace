@@ -41,4 +41,10 @@
         android:label="@string/menu_offline"
         tools:layout="@layout/fragment_offline" />
 
+    <fragment
+        android:id="@+id/nav_attendance"
+        android:name="com.androidteamiiitdmj.webspace.ui.attendance.AttendanceFragment"
+        android:label="@string/attendance"
+        tools:layout="@layout/attendance_fragment" />
+
 </navigation>

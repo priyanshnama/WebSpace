@@ -3,10 +3,13 @@
     <string name="app_icon">App Icon</string>
     <string name="prebuild_msg">This app is under development. please visit again and Thanks for Downloading</string>
     <string name="logout">Logout</string>
+
     <string name="sample_admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
     <string name="admob_app_id">ca-app-pub-6242171661439587~1091516122</string>
+
     <string name="sample_admob_banner_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="admob_banner_id">ca-app-pub-6242171661439587/2811274981</string>
+
     <string name="title_activity_home">HomeActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -47,8 +50,9 @@
     <string name="msg_token_fmt"></string>
 
     <string name="fcm_token">Emulator Android_9.0 Android 9, API 28</string>
-    <string name="current_version">Current Version</string>
-    <string name="_20_04_04">20.04.04</string>
+    <string name="txt_current_version">Current Version</string>
+    <string name="current_version">20.04.16</string>
     <string name="update">UPDATE</string>
+    <string name="attendance">Attendance</string>
 
 </resources>

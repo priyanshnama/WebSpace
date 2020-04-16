@@ -10,7 +10,7 @@ public class IntranetViewModel extends ViewModel {
 
     public IntranetViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is intranet fragment");
+        mText.setValue("INTRANET");
     }
 
     public LiveData<String> getText() {
