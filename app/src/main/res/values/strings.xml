@@ -54,5 +54,6 @@
     <string name="current_version">20.04.16</string>
     <string name="update">UPDATE</string>
     <string name="attendance">Attendance</string>
+    <string name="under_dev_msg">this feature is under development</string>
 
 </resources>
