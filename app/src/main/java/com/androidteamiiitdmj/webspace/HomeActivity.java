@@ -7,13 +7,17 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
@@ -43,6 +47,7 @@ public class HomeActivity extends AppCompatActivity {
     private Dialog panel;
     private FirebaseUser user;
     private String profile_image;
+    private Button action;
 
     public HomeActivity() {
     }
@@ -62,8 +67,7 @@ public class HomeActivity extends AppCompatActivity {
         ImageView imgProfilePic = findViewById(R.id.show_panel);
         Picasso.get().load(profile_image).into(imgProfilePic);
 
-        findViewById(R.id.action).setOnClickListener(v->startActivity(new Intent(HomeActivity.this,Search.class)));
-
+        action = findViewById(R.id.action);
         set_up_panel();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -80,6 +84,18 @@ public class HomeActivity extends AppCompatActivity {
 
         //if( isConnectedToInternet())open_fragment_internet();
         //else open_offline();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void onActionClicked() {
+        if((action.getAutofillHints()).toString()=="search")
+            startActivity(new Intent(HomeActivity.this,Search.class));
+        else
+            addNewSubject();
+    }
+
+    private void addNewSubject() {
+        Log.d("TAG","new subject added");
     }
 
     private void set_up_panel() {
@@ -153,6 +169,7 @@ public class HomeActivity extends AppCompatActivity {
             return false;
         }
     }
+
 
     private void task(InitializationStatus initializationStatus) {
     }
