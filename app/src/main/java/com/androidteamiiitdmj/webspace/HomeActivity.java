@@ -62,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
         ImageView imgProfilePic = findViewById(R.id.show_panel);
         Picasso.get().load(profile_image).into(imgProfilePic);
 
-        findViewById(R.id.search).setOnClickListener(v->startActivity(new Intent(HomeActivity.this,Search.class)));
+        findViewById(R.id.action).setOnClickListener(v->startActivity(new Intent(HomeActivity.this,Search.class)));
 
         set_up_panel();
 
@@ -76,7 +76,7 @@ public class HomeActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
 
         findViewById(R.id.navigate).setOnClickListener(this::navigation);
-        findViewById(R.id.contain_panel).setOnClickListener(this::show_panel);
+        findViewById(R.id.contain_panel).setOnClickListener(v -> panel.show());
 
         //if( isConnectedToInternet())open_fragment_internet();
         //else open_offline();
@@ -108,6 +108,11 @@ public class HomeActivity extends AppCompatActivity {
 
         ImageView imgProfilePicOfPanel = panel.findViewById(R.id.profile_image);
         Picasso.get().load(profile_image).into(imgProfilePicOfPanel);
+
+        MobileAds.initialize(this, this::task);
+        AdView panel_ad = panel.findViewById(R.id.panel_ad);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        panel_ad.loadAd(adRequest);
 
         panel.show();
         panel.hide();
@@ -147,15 +152,6 @@ public class HomeActivity extends AppCompatActivity {
         catch (Exception e){
             return false;
         }
-    }
-
-    private void show_panel(View view){
-        //now that the panel is set up, it's time to show it
-        panel.show();
-        MobileAds.initialize(this, this::task);
-        AdView panel_ad = panel.findViewById(R.id.panel_ad);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        panel_ad.loadAd(adRequest);
     }
 
     private void task(InitializationStatus initializationStatus) {
