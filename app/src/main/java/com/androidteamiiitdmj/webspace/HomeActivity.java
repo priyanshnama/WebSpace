@@ -67,7 +67,7 @@ public class HomeActivity extends AppCompatActivity {
         ImageView imgProfilePic = findViewById(R.id.show_panel);
         Picasso.get().load(profile_image).into(imgProfilePic);
 
-        action = findViewById(R.id.action);
+        //action = findViewById(R.id.action);
         set_up_panel();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
