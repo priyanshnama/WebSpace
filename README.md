@@ -1,2 +1,3 @@
 # WebSpace
-It's not for you. Go chill play games !!
+To Provide Seamless shift between Internet and Intranet networks
+This Project is under Development
